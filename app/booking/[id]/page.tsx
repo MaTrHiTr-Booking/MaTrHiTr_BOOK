@@ -60,8 +60,9 @@ export default function BookingPage({ params }: { params: { id: string } }) {
   }
 
   const handleStep2Submit = () => {
+    setStep(3)
     if (appointmentInfo.date && appointmentInfo.time && appointmentInfo.reason && appointmentInfo.doctor) {
-      setStep(3)
+      
     }
   }
 
