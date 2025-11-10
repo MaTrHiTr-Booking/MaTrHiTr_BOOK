@@ -4,10 +4,15 @@ import type React from "react"
 
 import { useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Heart, Eye, EyeOff } from "lucide-react"
+import { login } from "@/lib/api/auth"
+import { useToast } from "@/hooks/use-toast"
 
 export default function LoginPage() {
+  const router = useRouter()
+  const { toast } = useToast()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
@@ -34,12 +39,37 @@ export default function LoginPage() {
 
     if (Object.keys(newErrors).length === 0) {
       setIsLoading(true)
-      // Simulate login
-      setTimeout(() => {
+      
+      try {
+        // Gọi API đăng nhập
+        const result = await login({
+          username: email.split("@")[0], // Tạo username từ email
+          password: password,
+        })
+
+        if (result.success) {
+          toast({
+            title: "Thành công",
+            description: result.message,
+          })
+          // Redirect to appointments page
+          router.push("/appointments")
+        } else {
+          toast({
+            title: "Lỗi",
+            description: result.message,
+            variant: "destructive",
+          })
+        }
+      } catch (error) {
+        toast({
+          title: "Lỗi",
+          description: "Có lỗi xảy ra, vui lòng thử lại",
+          variant: "destructive",
+        })
+      } finally {
         setIsLoading(false)
-        // Redirect to appointments
-        window.location.href = "/appointments"
-      }, 1000)
+      }
     }
   }
 
