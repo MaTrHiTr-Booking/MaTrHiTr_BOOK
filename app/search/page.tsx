@@ -159,8 +159,6 @@ export default function SearchPage() {
 
   return (
     <>
-      <Header />
-
       <main className="min-h-screen bg-background">
         {/* Search Bar */}
         <div className="bg-secondary/30 border-b border-border py-6 px-4 sm:px-6 lg:px-8">
@@ -341,8 +339,6 @@ export default function SearchPage() {
           </div>
         </div>
       </main>
-
-      <Footer />
     </>
   )
 }

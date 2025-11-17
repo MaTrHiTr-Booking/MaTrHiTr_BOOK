@@ -73,8 +73,6 @@ export default function AppointmentDetailsPage({ params }: { params: { id: strin
 
   return (
     <>
-      <Header isLoggedIn={true} />
-
       <main className="min-h-screen bg-background py-8">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           {/* Header */}
@@ -325,8 +323,6 @@ export default function AppointmentDetailsPage({ params }: { params: { id: strin
           </Card>
         </div>
       )}
-
-      <Footer />
     </>
   )
 }

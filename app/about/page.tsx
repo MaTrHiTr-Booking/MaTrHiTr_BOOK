@@ -9,7 +9,6 @@ import { Footer } from "@/components/footer"
 export default function AboutPage() {
   return (
     <>
-      <Header/>
       <div className="min-h-screen bg-background">
         
         {/* Hero Section */}
@@ -162,6 +161,5 @@ export default function AboutPage() {
           </div>
         </section>
       </div>
-      <Footer/>
     </>  )
 }

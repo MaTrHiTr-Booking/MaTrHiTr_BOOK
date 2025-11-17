@@ -14,7 +14,7 @@
   --secondary-foreground: oklch(0.45 0.12 200);
 
   /* Accent: Warm coral (care, compassion) */
-  --accent: oklch(0.72 0.15 25);
+  --accent: oklch(0.45 0.12 200);
   --accent-foreground: oklch(1 0 0);
 
   /* Neutral palette */

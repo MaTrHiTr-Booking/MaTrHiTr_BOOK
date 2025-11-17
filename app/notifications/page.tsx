@@ -106,7 +106,6 @@ export default function NotificationsPage() {
 
   return (
     <>
-      <Header isLoggedIn={true} />
       <main className="min-h-screen bg-background">
         <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 py-8">
           {/* Header */}
@@ -214,7 +213,6 @@ export default function NotificationsPage() {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   )
 }

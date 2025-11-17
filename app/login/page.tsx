@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Heart, Eye, EyeOff } from "lucide-react"
 import { login } from "@/lib/api/auth"
 import { useToast } from "@/hooks/use-toast"
+import { logo} from "@/public/favicon.svg"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -80,6 +81,7 @@ export default function LoginPage() {
         <div className="text-center text-primary-foreground max-w-md">
           <div className="w-16 h-16 bg-primary-foreground/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
             <Heart className="w-8 h-8" />
+            <svg path={logo}></svg>
           </div>
           <h1 className="text-4xl font-bold mb-4">MaTrHiTr</h1>
           <p className="text-lg opacity-90 mb-8">Hệ thống đặt lịch khám bệnh trực tuyến hàng đầu Việt Nam</p>

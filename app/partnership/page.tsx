@@ -42,32 +42,6 @@ export default function PartnershipPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-background border-b border-border">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center gap-2 font-bold text-xl">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <Heart className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <span className="text-primary">MaTrHiTr</span>
-            </Link>
-            <div className="flex items-center gap-4">
-              <Link href="/login">
-                <Button variant="ghost" size="sm">
-                  Đăng nhập
-                </Button>
-              </Link>
-              <Link href="/partnership-register">
-                <Button size="sm" className="bg-primary hover:bg-primary/90">
-                  Đăng ký hợp tác
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </header>
-
       {/* Hero */}
       <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
@@ -255,56 +229,6 @@ export default function PartnershipPage() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="border-t border-border py-12 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="flex items-center gap-2 font-bold text-lg mb-4">
-                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                  <Heart className="w-5 h-5 text-primary-foreground" />
-                </div>
-                <span className="text-primary">MaTrHiTr</span>
-              </div>
-              <p className="text-muted-foreground text-sm">Hệ thống đặt lịch khám bệnh trực tuyến hàng đầu Việt Nam</p>
-            </div>
-            {[
-              { title: "Sản phẩm", links: ["Cho bệnh nhân", "Cho phòng khám", "Giá cả"] },
-              { title: "Công ty", links: ["Về chúng tôi", "Blog", "Liên hệ"] },
-              { title: "Pháp lý", links: ["Điều khoản", "Bảo mật", "Cookie"] },
-            ].map((col, i) => (
-              <div key={i}>
-                <h4 className="font-semibold text-foreground mb-4">{col.title}</h4>
-                <ul className="space-y-2">
-                  {col.links.map((link) => (
-                    <li key={link}>
-                      <Link href="#" className="text-muted-foreground hover:text-primary text-sm transition-colors">
-                        {link}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-muted-foreground text-sm">© 2025 MaTrHiTr. All rights reserved.</p>
-            <div className="flex gap-6 mt-4 md:mt-0">
-              <Link href="#" className="text-muted-foreground hover:text-primary text-sm transition-colors">
-                Facebook
-              </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary text-sm transition-colors">
-                Twitter
-              </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary text-sm transition-colors">
-                LinkedIn
-              </Link>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }

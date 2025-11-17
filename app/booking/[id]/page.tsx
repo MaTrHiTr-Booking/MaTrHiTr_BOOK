@@ -77,8 +77,6 @@ export default function BookingPage({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <Header isLoggedIn={isLoggedIn} />
-
       <main className="min-h-screen bg-background py-8">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           {/* Steps Indicator */}
@@ -422,8 +420,6 @@ export default function BookingPage({ params }: { params: { id: string } }) {
           </Card>
         </div>
       )}
-
-      <Footer />
     </>
   )
 }

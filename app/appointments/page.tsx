@@ -152,8 +152,6 @@ export default function AppointmentsPage() {
 
   return (
     <>
-      <Header isLoggedIn={true} />
-
       <main className="min-h-screen bg-background py-8">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="mb-8">
@@ -205,8 +203,6 @@ export default function AppointmentsPage() {
           </Tabs>
         </div>
       </main>
-
-      <Footer />
     </>
   )
 }

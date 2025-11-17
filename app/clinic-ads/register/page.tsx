@@ -135,8 +135,6 @@ export default function ClinicAdsRegisterPage() {
 
   return (
     <>
-      <Header />
-
       <main className="min-h-screen bg-gradient-to-b from-secondary/30 to-background py-12 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
           {/* Header */}
@@ -510,8 +508,6 @@ export default function ClinicAdsRegisterPage() {
           )}
         </div>
       </main>
-
-      <Footer />
     </>
   )
 }

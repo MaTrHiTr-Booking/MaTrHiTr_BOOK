@@ -79,8 +79,6 @@ export default function ClinicDetailsPage({ params }: { params: { id: string } }
 
   return (
     <>
-      <Header />
-
       <main className="min-h-screen bg-background">
         <div className="px-4 sm:px-6 lg:px-8 py-8">
           <div className="mx-auto max-w-6xl">
@@ -261,8 +259,6 @@ export default function ClinicDetailsPage({ params }: { params: { id: string } }
           </div>
         </div>
       </main>
-
-      <Footer />
     </>
   )
 }

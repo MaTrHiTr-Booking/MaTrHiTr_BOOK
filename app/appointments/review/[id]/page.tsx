@@ -57,7 +57,6 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
   if (submitted) {
     return (
       <>
-        <Header isLoggedIn={true} />
         <main className="min-h-screen bg-background py-8">
           <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
             <Card className="p-8 sm:p-12 text-center shadow-lg">
@@ -82,14 +81,12 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
             </Card>
           </div>
         </main>
-        <Footer />
       </>
     )
   }
 
   return (
     <>
-      <Header isLoggedIn={true} />
 
       <main className="min-h-screen bg-background py-8">
         <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
@@ -246,8 +243,6 @@ export default function ReviewPage({ params }: { params: { id: string } }) {
           </Card>
         </div>
       </main>
-
-      <Footer />
     </>
   )
 }

@@ -26,36 +26,39 @@ export function Header({ isLoggedIn = false }: HeaderProps) {
     <header className="sticky top-0 z-50 bg-background border-b border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <Image 
-              src="/logo.svg" 
-              alt="MaTrHiTr Logo" 
-              width={140} 
-              height={35}
-              priority
-              className="h-8 w-auto"
-            />
-          </Link>
+          <div className="flex gap-3">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+              <Image 
+                src="/logo.svg" 
+                alt="MaTrHiTr Logo" 
+                width={140} 
+                height={35}
+                priority
+                className="h-8 w-auto"
+              />
+            </Link>
 
-          {/* Desktop Navigation - Hidden on mobile */}
-          <div className="hidden lg:flex items-center gap-3">
             <Link href="/about">
-              <Button variant="ghost" size="sm" className="text-foreground">
+              <Button variant="hoverText" size="sm" className="text-foreground">
                 Về chúng tôi
               </Button>
             </Link>
             <Link href="/partnership">
-              <Button variant="ghost" size="sm" className="text-foreground">
+              <Button variant="hoverText" size="sm" className="text-foreground">
                 Hợp tác
               </Button>
             </Link>
 
             <Link href="/clinic-ads/management">
-              <Button variant="ghost" size="sm" className="text-foreground">
+              <Button variant="hoverText" size="sm" className="text-foreground">
                 Quản lý quảng cáo
               </Button>
             </Link>
+          </div>
+
+          {/* Desktop Navigation - Hidden on mobile */}
+          <div className="hidden lg:flex items-center gap-3">
 
             {isLoggedIn ? (
               <>

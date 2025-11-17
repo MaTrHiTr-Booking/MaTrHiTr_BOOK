@@ -85,27 +85,6 @@ export default function PartnershipRegisterPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-background border-b border-border">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center gap-2 font-bold text-xl">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <Heart className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <span className="text-primary">MaTrHiTr</span>
-            </Link>
-            <div className="flex items-center gap-4">
-              <Link href="/partnership">
-                <Button variant="ghost" size="sm">
-                  Quay lại
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </header>
-
       {/* Main Content */}
       <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 py-12">
         {/* Progress Bar */}
