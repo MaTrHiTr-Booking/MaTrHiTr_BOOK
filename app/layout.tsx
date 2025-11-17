@@ -8,8 +8,20 @@ const _inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "MaTrHiTr - Đặt Lịch Khám Bệnh",
-  description: "Hệ thống đặt lịch khám bệnh trực tuyến",
+  description: "Hệ thống đặt lịch khám bệnh trực tuyến - Healthcare Booking Platform",
   generator: "v0.app",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icon.svg", type: "image/svg+xml", sizes: "any" },
+    ],
+    apple: "/apple-touch-icon.svg",
+  },
+  openGraph: {
+    title: "MaTrHiTr - Đặt Lịch Khám Bệnh",
+    description: "Hệ thống đặt lịch khám bệnh trực tuyến",
+    images: ["/icon.svg"],
+  },
 }
 
 export default function RootLayout({
