@@ -8,8 +8,6 @@ import { CheckCircle, Shield, Clock, Star, MapPin, ChevronDown } from "lucide-re
 export default function HomePage() {
   return (
     <>
-      <Header />
-
       <main className="min-h-screen bg-gradient-to-b from-secondary/30 to-background">
         {/* Hero Section */}
         <section className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8">
@@ -141,7 +139,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Featured Clinic 1 */}
               <Card className="overflow-hidden border-border shadow transition-shadow hover:shadow-md cursor-pointer">
-                <div className="relative h-40 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                <div className="relative h-50 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                   <div className="absolute top-3 right-3 bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">
                     Quảng cáo
                   </div>
@@ -169,7 +167,7 @@ export default function HomePage() {
 
               {/* Featured Clinic 2 */}
               <Card className="overflow-hidden border-border shadow transition-shadow hover:shadow-md cursor-pointer">
-                <div className="relative h-40 bg-gradient-to-br from-secondary/20 to-accent/20 flex items-center justify-center">
+                <div className="relative h-50 bg-gradient-to-br from-secondary/20 to-accent/20 flex items-center justify-center">
                   <div className="absolute top-3 right-3 bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">
                     Quảng cáo
                   </div>
@@ -195,7 +193,7 @@ export default function HomePage() {
 
               {/* Featured Clinic 3 */}
               <Card className="overflow-hidden border-border shadow transition-shadow hover:shadow-md cursor-pointer">
-                <div className="relative h-40 bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center">
+                <div className="relative h-50 bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center">
                   <div className="absolute top-3 right-3 bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">
                     Quảng cáo
                   </div>
@@ -314,8 +312,6 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </>
   )
 }

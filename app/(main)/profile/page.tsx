@@ -10,6 +10,7 @@ import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Eye, EyeOff, ArrowLeft, LogOut } from "lucide-react"
 import Link from "next/link"
+import { useAuth } from "@/hooks/use-auth"
 
 interface UserProfile {
   name: string
@@ -27,6 +28,7 @@ export default function ProfilePage() {
   const [showPassword, setShowPassword] = useState(false)
   const [showNewPassword, setShowNewPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const {handleLogout} = useAuth();
 
   // Mock user data
   const [profile, setProfile] = useState<UserProfile>({
@@ -350,10 +352,17 @@ export default function ProfilePage() {
 
       {/* Logout Button */}
       <div className="mt-8 pt-6 border-t border-border">
-        <Button variant="destructive" className="flex items-center gap-2">
-          <LogOut className="w-4 h-4" />
-          Đăng Xuất
-        </Button>
+        
+        <Link href="/">
+          <Button 
+            variant="outline" 
+            className="flex items-center gap-2"
+            onClick={handleLogout} 
+            >
+            <LogOut className="w-4 h-4" />
+            Đăng Xuất
+          </Button>
+        </Link>
       </div>
     </main>
   )

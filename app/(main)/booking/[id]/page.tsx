@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { CheckCircle } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export default function BookingPage({ params }: { params: { id: string } }) {
   const [step, setStep] = useState(1)
@@ -30,6 +31,8 @@ export default function BookingPage({ params }: { params: { id: string } }) {
     doctor: "",
   })
 
+  const router = useRouter(); 
+
   const clinicName = "Phòng Khám Sức Khỏe Gia Đình"
   const doctors = ["TS.BS Nguyễn Văn A", "BS Trần Thị B", "BS Lê Văn C"]
   const timeSlots = [
@@ -48,32 +51,42 @@ export default function BookingPage({ params }: { params: { id: string } }) {
     "16:30",
     "17:00",
   ]
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setIsLoggedIn(true)
+    }
+  }, [])
 
   const handleStep1Submit = () => {
     if (!isLoggedIn) {
       setShowLoginPopup(true)
     } else {
-      setShowUpdateInfoPopup(true)
+      // setShowUpdateInfoPopup(true)
       setTimeout(() => setShowUpdateInfoPopup(false), 3000)
       setStep(2)
     }
   }
 
-  const handleStep2Submit = () => {
-    setStep(3)
-    if (appointmentInfo.date && appointmentInfo.time && appointmentInfo.reason && appointmentInfo.doctor) {
-      
+  const handleLoginRedirect = () => {
+      const currentUrl = window.location.pathname + window.location.search; // Lấy URL hiện tại
+      router.push(`/login?redirect=${encodeURIComponent(currentUrl)}`);
+  }
+
+    const handleStep2Submit = () => {
+      setStep(3)
+      if (appointmentInfo.date && appointmentInfo.time && appointmentInfo.reason && appointmentInfo.doctor) {
+        
+      }
     }
-  }
 
-  const handleStep3Submit = () => {
-    setStep(4)
-  }
+    const handleStep3Submit = () => {
+      setStep(4)
+    }
 
-  const handleUpdateImmediately = () => {
-    setShowUpdateInfoPopup(false)
-    setStep(2)
-  }
+    const handleUpdateImmediately = () => {
+      setShowUpdateInfoPopup(false)
+      setStep(2)
+    }
 
   return (
     <>
@@ -117,7 +130,7 @@ export default function BookingPage({ params }: { params: { id: string } }) {
                     placeholder="Nhập họ và tên"
                     value={patientInfo.fullName}
                     onChange={(e) => setPatientInfo({ ...patientInfo, fullName: e.target.value })}
-                    disabled={isLoggedIn}
+                    // disabled={isLoggedIn}
                   />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -128,7 +141,7 @@ export default function BookingPage({ params }: { params: { id: string } }) {
                       placeholder="Nhập số điện thoại"
                       value={patientInfo.phone}
                       onChange={(e) => setPatientInfo({ ...patientInfo, phone: e.target.value })}
-                      disabled={isLoggedIn}
+                      // disabled={isLoggedIn}
                     />
                   </div>
                   <div>
@@ -138,7 +151,7 @@ export default function BookingPage({ params }: { params: { id: string } }) {
                       placeholder="Nhập email"
                       value={patientInfo.email}
                       onChange={(e) => setPatientInfo({ ...patientInfo, email: e.target.value })}
-                      disabled={isLoggedIn}
+                      // disabled={isLoggedIn}
                     />
                   </div>
                 </div>
@@ -148,7 +161,7 @@ export default function BookingPage({ params }: { params: { id: string } }) {
                     type="date"
                     value={patientInfo.dob}
                     onChange={(e) => setPatientInfo({ ...patientInfo, dob: e.target.value })}
-                    disabled={isLoggedIn}
+                    // disabled={isLoggedIn}
                   />
                 </div>
               </div>
@@ -381,6 +394,7 @@ export default function BookingPage({ params }: { params: { id: string } }) {
                     setIsLoggedIn(true)
                     setShowLoginPopup(false)
                     setShowUpdateInfoPopup(true)
+                    handleLoginRedirect()
                   }}
                   className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
                 >

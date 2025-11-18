@@ -90,8 +90,8 @@ export default function ClinicDetailsPage({ params }: { params: { id: string } }
               {/* Left: Images and Info */}
               <div className="lg:col-span-2 space-y-6">
                 {/* Main Image */}
-                <Card className="overflow-hidden bg-secondary/30 shadow-lg">
-                  <div className="aspect-video bg-muted flex items-center justify-center">
+                <Card className="overflow-hidden bg-secondary/30 shadow-lg h-[200px] md:h-[300px] lg:h-[400px]">
+                  <div className="h-full w-full bg-muted flex items-center justify-center">
                     <img
                       src={clinic.images[activeImage] || "/placeholder.svg"}
                       alt="clinic"
@@ -99,6 +99,7 @@ export default function ClinicDetailsPage({ params }: { params: { id: string } }
                     />
                   </div>
                 </Card>
+
 
                 {/* Thumbnail Images */}
                 <div className="flex gap-2 overflow-x-auto pb-2">
@@ -122,7 +123,7 @@ export default function ClinicDetailsPage({ params }: { params: { id: string } }
                   <div className="space-y-4 mb-6">
                     <div className="flex items-center gap-4">
                       <div className="flex items-center gap-1">
-                        <Star className="w-5 h-5 fill-accent text-accent" />
+                        <Star className="w-5 h-5 fill-amber-400 text-yellow-500" />
                         <span className="font-bold text-lg">{clinic.rating}</span>
                       </div>
                       <span className="text-muted-foreground">({clinic.reviews} đánh giá)</span>
@@ -155,10 +156,10 @@ export default function ClinicDetailsPage({ params }: { params: { id: string } }
 
                 {/* Tabs */}
                 <Tabs defaultValue="about" className="w-full">
-                  <TabsList className="grid w-full grid-cols-3 bg-secondary/20 p-1 rounded-lg">
+                  <TabsList className="flex w-full grid-cols-3 bg-secondary/20 p-1 rounded-lg">
                     <TabsTrigger value="about">Giới Thiệu</TabsTrigger>
                     <TabsTrigger value="doctors">Bác Sĩ</TabsTrigger>
-                    <TabsTrigger value="services">Dịch Vụ</TabsTrigger>
+                    {/* <TabsTrigger value="services">Dịch Vụ</TabsTrigger> */}
                   </TabsList>
 
                   {/* About Tab */}
@@ -196,7 +197,7 @@ export default function ClinicDetailsPage({ params }: { params: { id: string } }
                             <p className="text-sm text-muted-foreground">Kinh Nghiệm: {doctor.experience}</p>
                           </div>
                           <div className="flex items-center gap-1 flex-shrink-0">
-                            <Star className="w-4 h-4 fill-accent text-accent" />
+                            <Star className="w-4 h-4 fill-amber-300 text-amber-400" />
                             <span className="font-bold text-sm">{doctor.rating}</span>
                           </div>
                         </div>
@@ -205,7 +206,7 @@ export default function ClinicDetailsPage({ params }: { params: { id: string } }
                   </TabsContent>
 
                   {/* Services Tab */}
-                  <TabsContent value="services" className="mt-6 space-y-3">
+                  {/* <TabsContent value="services" className="mt-6 space-y-3">
                     {clinic.services.map((service) => (
                       <Card key={service.id} className="p-4 shadow">
                         <div className="flex items-start justify-between gap-4">
@@ -219,7 +220,7 @@ export default function ClinicDetailsPage({ params }: { params: { id: string } }
                         </div>
                       </Card>
                     ))}
-                  </TabsContent>
+                  </TabsContent> */}
                 </Tabs>
               </div>
 

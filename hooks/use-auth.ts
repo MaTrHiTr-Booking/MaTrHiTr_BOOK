@@ -72,9 +72,19 @@ export function useAuth() {
     }
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem("token")
+    toast({
+      title: "Đăng xuất thành công",
+      description: "Bạn đã đăng xuất.",
+    })
+    router.push("/")
+  }
+
   return {
     handleRegister,
     handleLogin,
+    handleLogout,
     loading,
   }
 }

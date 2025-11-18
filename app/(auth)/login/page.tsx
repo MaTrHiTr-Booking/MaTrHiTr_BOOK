@@ -4,14 +4,18 @@ import type React from "react"
 
 import { useState } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Heart, Eye, EyeOff } from "lucide-react"
 import { login } from "@/lib/api/auth"
 import { useToast } from "@/hooks/use-toast"
-import { logo} from "@/public/favicon.svg"
+import { logo } from "@/public/favicon.svg"
 
-export default function LoginPage() {
+interface LoginPageProps {
+  onSuccess?: () => void
+}
+
+export default function LoginPage({ onSuccess }: LoginPageProps) {
   const router = useRouter()
   const { toast } = useToast()
   const [email, setEmail] = useState("")
@@ -19,9 +23,12 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({})
+  const searchParams = useSearchParams()
+  const redirectUrl = searchParams.get('redirect') 
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
+    
     const newErrors: { email?: string; password?: string } = {}
 
     if (!email) {
@@ -37,46 +44,66 @@ export default function LoginPage() {
     }
 
     setErrors(newErrors)
-
-    if (Object.keys(newErrors).length === 0) {
-      setIsLoading(true)
-      
-      try {
-        // Gọi API đăng nhập
-        const result = await login({
-          username: email.split("@")[0], // Tạo username từ email
-          password: password,
-        })
-
-        if (result.success) {
-          toast({
-            title: "Thành công",
-            description: result.message,
-          })
-          // Redirect to appointments page
-          router.push("/appointments")
-        } else {
-          toast({
-            title: "Lỗi",
-            description: result.message,
-            variant: "destructive",
-          })
-        }
-      } catch (error) {
-        toast({
-          title: "Lỗi",
-          description: "Có lỗi xảy ra, vui lòng thử lại",
-          variant: "destructive",
-        })
-      } finally {
-        setIsLoading(false)
-      }
+    localStorage.setItem("token","1")
+    console.log("con bo biet bay")
+    if (onSuccess) {
+      onSuccess() // Nếu callback prop được truyền
+    } else if (redirectUrl) {
+      console.log(redirectUrl)
+      router.push(decodeURIComponent(redirectUrl)) // Redirect về URL từ query
+    } else {
+      router.push("/") // Redirect mặc định
     }
+
+    // if (Object.keys(newErrors).length === 0) {
+    //   setIsLoading(true)
+
+    //   try {
+    //     const result = await login({
+    //       username: email.split("@")[0],
+    //       password: password,
+    //     })
+
+    //     if (result.success) {
+    //       toast({
+    //         title: "Thành công",
+    //         description: result.message,
+    //       })
+    //       console.log("hehehehe")
+
+    //       // ------ CALLBACK LOGIC ------
+    //       if (onSuccess) {
+    //         onSuccess() // Nếu callback prop được truyền
+    //       } else if (redirectUrl) {
+    //         console.log(redirectUrl)
+    //         router.push(decodeURIComponent(redirectUrl)) // Redirect về URL từ query
+    //       } else {
+    //         router.push("/appointments") // Redirect mặc định
+    //       }
+    //       // -----------------------------
+
+    //     } else {
+    //       toast({
+    //         title: "Lỗi",
+    //         description: result.message,
+    //         variant: "destructive",
+    //       })
+    //     }
+    //   } catch (error) {
+    //     toast({
+    //       title: "Lỗi",
+    //       description: "Có lỗi xảy ra, vui lòng thử lại",
+    //       variant: "destructive",
+    //     })
+    //   } finally {
+    //     setIsLoading(false)
+    //   }
+    // }
   }
 
   return (
     <div className="min-h-screen bg-background flex">
-      {/* Left side - Branding */}
+      {/* Left side */}
       <div className="hidden lg:flex lg:w-1/2 bg-primary items-center justify-center p-8">
         <div className="text-center text-primary-foreground max-w-md">
           <div className="w-16 h-16 bg-primary-foreground/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
@@ -84,7 +111,10 @@ export default function LoginPage() {
             <svg path={logo}></svg>
           </div>
           <h1 className="text-4xl font-bold mb-4">MaTrHiTr</h1>
-          <p className="text-lg opacity-90 mb-8">Hệ thống đặt lịch khám bệnh trực tuyến hàng đầu Việt Nam</p>
+          <p className="text-lg opacity-90 mb-8">
+            Hệ thống đặt lịch khám bệnh trực tuyến hàng đầu Việt Nam
+          </p>
+
           <div className="space-y-4 text-sm opacity-80">
             <div className="flex items-start gap-3">
               <div className="w-5 h-5 rounded-full bg-primary-foreground/30 flex-shrink-0 mt-1"></div>
@@ -102,10 +132,9 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* Right side - Login Form */}
+      {/* Right side */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-6 lg:p-8">
         <div className="w-full max-w-md">
-          {/* Mobile Logo */}
           <div className="lg:hidden flex items-center gap-2 font-bold text-2xl mb-8">
             <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
               <Heart className="w-6 h-6 text-primary-foreground" />
@@ -156,7 +185,7 @@ export default function LoginPage() {
               {errors.password && <p className="text-destructive text-sm mt-1">{errors.password}</p>}
             </div>
 
-            {/* Remember Me & Forgot Password */}
+            {/* Remember me */}
             <div className="flex items-center justify-between text-sm">
               <label className="flex items-center gap-2 cursor-pointer">
                 <input type="checkbox" className="w-4 h-4 rounded border-border cursor-pointer" />
@@ -167,7 +196,7 @@ export default function LoginPage() {
               </Link>
             </div>
 
-            {/* Login Button */}
+            {/* Button */}
             <Button
               type="submit"
               disabled={isLoading}
@@ -188,16 +217,16 @@ export default function LoginPage() {
           </div>
 
           {/* Social Login */}
-          <div className="grid grid-cols-2 gap-4">
+          {/* <div className="grid grid-cols-2 gap-4">
             <Button variant="outline" className="h-11 rounded-lg bg-transparent">
               Google
             </Button>
             <Button variant="outline" className="h-11 rounded-lg bg-transparent">
               Facebook
             </Button>
-          </div>
+          </div> */}
 
-          {/* Sign Up Link */}
+          {/* Sign up */}
           <p className="text-center text-muted-foreground mt-6">
             Chưa có tài khoản?{" "}
             <Link href="/signup" className="text-primary hover:underline font-medium">

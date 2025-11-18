@@ -113,14 +113,17 @@ const AppointmentCard = ({ appointment }: { appointment: Appointment }) => {
           <div className="text-destructive text-xs">Lý do hủy: {appointment.cancelReason}</div>
         )}
       </div>
-
       <div className="flex items-center justify-between gap-2 mt-4" onClick={(e) => e.stopPropagation()}>
-        <Button size="sm" variant="ghost" className="w-full">
+        <Button size="sm" variant="ghost" className="flex-1">
           Xem Chi Tiết
         </Button>
+
         {appointment.status === "completed" && (
-          <Link href={`/appointments/review/${appointment.id}`}>
-            <Button size="sm" className="bg-accent hover:bg-accent/90 text-accent-foreground whitespace-nowrap">
+          <Link href={`/appointments/review/${appointment.id}`} className="flex-1">
+            <Button
+              size="sm"
+              className="w-full bg-accent hover:bg-accent/90 text-accent-foreground whitespace-nowrap"
+            >
               Đánh Giá
             </Button>
           </Link>
