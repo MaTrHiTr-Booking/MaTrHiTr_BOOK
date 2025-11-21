@@ -133,62 +133,62 @@ export default function LoginPage({ onSuccess }: LoginPageProps) {
       </div>
 
       {/* Right side */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-3 sm:p-6 lg:p-8">
         <div className="w-full max-w-md">
-          <div className="lg:hidden flex items-center gap-2 font-bold text-2xl mb-8">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <Heart className="w-6 h-6 text-primary-foreground" />
+          <div className="lg:hidden flex items-center gap-2 font-bold text-xl sm:text-2xl mb-6 sm:mb-8">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary rounded-lg flex items-center justify-center">
+              <Heart className="w-5 h-5 sm:w-6 sm:h-6 text-primary-foreground" />
             </div>
             <span className="text-primary">MaTrHiTr</span>
           </div>
 
-          <h2 className="text-3xl font-bold text-foreground mb-2">Đăng nhập</h2>
-          <p className="text-muted-foreground mb-8">Vui lòng nhập thông tin đăng nhập của bạn</p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-1.5 sm:mb-2">Đăng nhập</h2>
+          <p className="text-xs sm:text-sm text-muted-foreground mb-6 sm:mb-8">Vui lòng nhập thông tin đăng nhập của bạn</p>
 
-          <form onSubmit={handleLogin} className="space-y-4">
+          <form onSubmit={handleLogin} className="space-y-3.5 sm:space-y-4">
             {/* Email */}
             <div>
-              <label className="block text-sm font-medium text-foreground mb-2">Email</label>
+              <label className="block text-xs sm:text-sm font-medium text-foreground mb-1.5 sm:mb-2">Email</label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
-                className={`w-full px-4 py-3 rounded-lg bg-input border transition-colors ${
+                className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm rounded-lg bg-input border transition-colors ${
                   errors.email ? "border-destructive" : "border-border"
                 } text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary`}
               />
-              {errors.email && <p className="text-destructive text-sm mt-1">{errors.email}</p>}
+              {errors.email && <p className="text-destructive text-xs sm:text-sm mt-1">{errors.email}</p>}
             </div>
 
             {/* Password */}
             <div>
-              <label className="block text-sm font-medium text-foreground mb-2">Mật khẩu</label>
+              <label className="block text-xs sm:text-sm font-medium text-foreground mb-1.5 sm:mb-2">Mật khẩu</label>
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className={`w-full px-4 py-3 rounded-lg bg-input border transition-colors ${
+                  className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm rounded-lg bg-input border transition-colors ${
                     errors.password ? "border-destructive" : "border-border"
                   } text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary`}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-3 text-muted-foreground hover:text-foreground transition-colors"
+                  className="absolute right-2.5 sm:right-3 top-2.5 sm:top-3 text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  {showPassword ? <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" /> : <Eye className="w-4 h-4 sm:w-5 sm:h-5" />}
                 </button>
               </div>
-              {errors.password && <p className="text-destructive text-sm mt-1">{errors.password}</p>}
+              {errors.password && <p className="text-destructive text-xs sm:text-sm mt-1">{errors.password}</p>}
             </div>
 
             {/* Remember me */}
-            <div className="flex items-center justify-between text-sm">
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input type="checkbox" className="w-4 h-4 rounded border-border cursor-pointer" />
+            <div className="flex items-center justify-between text-xs sm:text-sm">
+              <label className="flex items-center gap-1.5 sm:gap-2 cursor-pointer">
+                <input type="checkbox" className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded border-border cursor-pointer" />
                 <span className="text-muted-foreground">Ghi nhớ tôi</span>
               </label>
               <Link href="#" className="text-primary hover:underline">
@@ -200,18 +200,18 @@ export default function LoginPage({ onSuccess }: LoginPageProps) {
             <Button
               type="submit"
               disabled={isLoading}
-              className="w-full h-11 bg-primary hover:bg-primary/90 text-primary-foreground font-medium rounded-lg transition-colors"
+              className="w-full h-10 sm:h-11 bg-primary hover:bg-primary/90 text-primary-foreground font-medium rounded-lg transition-colors text-sm"
             >
               {isLoading ? "Đang đăng nhập..." : "Đăng nhập"}
             </Button>
           </form>
 
           {/* Divider */}
-          <div className="my-6 relative">
+          <div className="my-5 sm:my-6 relative">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-border"></div>
             </div>
-            <div className="relative flex justify-center text-sm">
+            <div className="relative flex justify-center text-xs sm:text-sm">
               <span className="px-2 bg-background text-muted-foreground">Hoặc</span>
             </div>
           </div>
@@ -227,7 +227,7 @@ export default function LoginPage({ onSuccess }: LoginPageProps) {
           </div> */}
 
           {/* Sign up */}
-          <p className="text-center text-muted-foreground mt-6">
+          <p className="text-center text-xs sm:text-sm text-muted-foreground mt-5 sm:mt-6">
             Chưa có tài khoản?{" "}
             <Link href="/signup" className="text-primary hover:underline font-medium">
               Đăng ký ngay

@@ -107,20 +107,20 @@ export default function NotificationsPage() {
   return (
     <>
       <main className="min-h-screen bg-background">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 py-8">
+        <div className="mx-auto max-w-2xl px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
           {/* Header */}
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-foreground mb-2">Thông báo</h1>
-            <p className="text-muted-foreground">
+          <div className="mb-6 sm:mb-8">
+            <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-1.5 sm:mb-2">Thông báo</h1>
+            <p className="text-xs sm:text-sm text-muted-foreground">
               {unreadCount > 0 ? `Bạn có ${unreadCount} thông báo chưa đọc` : "Bạn đã đọc tất cả thông báo"}
             </p>
           </div>
 
           {/* Filter Tabs */}
-          <div className="flex gap-2 mb-6">
+          <div className="flex gap-1.5 sm:gap-2 mb-4 sm:mb-6">
             <button
               onClick={() => setFilter("all")}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-medium text-xs sm:text-sm transition-colors ${
                 filter === "all"
                   ? "bg-primary text-primary-foreground"
                   : "bg-secondary text-foreground hover:bg-secondary/80"
@@ -130,7 +130,7 @@ export default function NotificationsPage() {
             </button>
             <button
               onClick={() => setFilter("unread")}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-medium text-xs sm:text-sm transition-colors ${
                 filter === "unread"
                   ? "bg-primary text-primary-foreground"
                   : "bg-secondary text-foreground hover:bg-secondary/80"
@@ -141,11 +141,12 @@ export default function NotificationsPage() {
           </div>
 
           {/* Actions */}
-          <div className="flex gap-2 mb-6">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-6">
             {unreadCount > 0 && (
-              <Button onClick={handleMarkAllAsRead} variant="outline" size="sm">
-                <Check className="w-4 h-4 mr-2" />
-                Đánh dấu tất cả đã đọc
+              <Button onClick={handleMarkAllAsRead} variant="outline" size="sm" className="text-xs sm:text-sm h-8 sm:h-9">
+                <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
+                <span className="hidden sm:inline">Đánh dấu tất cả đã đọc</span>
+                <span className="sm:hidden">Đánh dấu đã đọc</span>
               </Button>
             )}
             {notifications.length > 0 && (
@@ -153,9 +154,9 @@ export default function NotificationsPage() {
                 onClick={handleDeleteAll}
                 variant="outline"
                 size="sm"
-                className="text-destructive hover:bg-destructive/10 bg-transparent"
+                className="text-destructive hover:bg-destructive/10 bg-transparent text-xs sm:text-sm h-8 sm:h-9"
               >
-                <Trash2 className="w-4 h-4 mr-2" />
+                <Trash2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
                 Xóa tất cả
               </Button>
             )}
@@ -164,9 +165,9 @@ export default function NotificationsPage() {
           {/* Notifications List */}
           <div className="space-y-2">
             {filteredNotifications.length === 0 ? (
-              <div className="flex flex-col items-center justify-center py-12 bg-card border border-border rounded-lg">
-                <Bell className="w-12 h-12 text-muted-foreground mb-3 opacity-50" />
-                <p className="text-muted-foreground font-medium">
+              <div className="flex flex-col items-center justify-center py-10 sm:py-12 bg-card border border-border rounded-lg">
+                <Bell className="w-10 h-10 sm:w-12 sm:h-12 text-muted-foreground mb-2.5 sm:mb-3 opacity-50" />
+                <p className="text-xs sm:text-sm text-muted-foreground font-medium">
                   {filter === "unread" ? "Không có thông báo chưa đọc" : "Không có thông báo"}
                 </p>
               </div>
@@ -174,35 +175,35 @@ export default function NotificationsPage() {
               filteredNotifications.map((notification) => (
                 <div
                   key={notification.id}
-                  className={`flex gap-4 p-4 border border-border rounded-lg transition-colors ${
+                  className={`flex gap-2.5 sm:gap-4 p-3 sm:p-4 border border-border rounded-lg transition-colors ${
                     !notification.isRead ? "bg-secondary/30 hover:bg-secondary/40" : "bg-card hover:bg-secondary/20"
                   }`}
                 >
-                  <div className="flex-shrink-0 mt-1">{getNotificationIcon(notification.type)}</div>
+                  <div className="flex-shrink-0 mt-0.5 sm:mt-1">{getNotificationIcon(notification.type)}</div>
                   <div className="flex-1 min-w-0">
                     <Link
                       href={notification.appointmentId ? `/appointments/${notification.appointmentId}` : "#"}
                       className="hover:underline"
                     >
-                      <h3 className="font-semibold text-foreground mb-1">{notification.title}</h3>
+                      <h3 className="font-semibold text-sm sm:text-base text-foreground mb-0.5 sm:mb-1 line-clamp-1">{notification.title}</h3>
                     </Link>
-                    <p className="text-sm text-muted-foreground mb-2">{notification.message}</p>
-                    <div className="flex items-center justify-between gap-2">
-                      <p className="text-xs text-muted-foreground">{notification.timestamp}</p>
-                      <div className="flex gap-2">
+                    <p className="text-xs sm:text-sm text-muted-foreground mb-1.5 sm:mb-2 line-clamp-2">{notification.message}</p>
+                    <div className="flex items-center justify-between gap-2 flex-wrap">
+                      <p className="text-[10px] sm:text-xs text-muted-foreground">{notification.timestamp}</p>
+                      <div className="flex gap-2 sm:gap-2.5">
                         {!notification.isRead && (
                           <button
                             onClick={() => handleMarkAsRead(notification.id)}
-                            className="text-primary text-xs hover:underline font-medium"
+                            className="text-primary text-[10px] sm:text-xs hover:underline font-medium whitespace-nowrap"
                           >
                             Đánh dấu đã đọc
                           </button>
                         )}
                         <button
                           onClick={() => handleDelete(notification.id)}
-                          className="text-muted-foreground hover:text-destructive text-xs"
+                          className="text-muted-foreground hover:text-destructive"
                         >
-                          <Trash2 className="w-4 h-4" />
+                          <Trash2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                         </button>
                       </div>
                     </div>

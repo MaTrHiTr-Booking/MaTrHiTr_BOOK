@@ -77,13 +77,13 @@ const StatusIcon = ({ status }: { status: Appointment["status"] }) => {
 const StatusLabel = ({ status }: { status: Appointment["status"] }) => {
   switch (status) {
     case "pending":
-      return <span className="text-xs bg-amber-100 text-amber-700 px-2.5 py-1 rounded-full">Chưa Xác Nhận</span>
+      return <span className="text-[10px] sm:text-xs bg-amber-100 text-amber-700 px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-full whitespace-nowrap">Chưa XN</span>
     case "confirmed":
-      return <span className="text-xs bg-primary/10 text-primary px-2.5 py-1 rounded-full">Đã Xác Nhận</span>
+      return <span className="text-[10px] sm:text-xs bg-primary/10 text-primary px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-full whitespace-nowrap">Đã XN</span>
     case "completed":
-      return <span className="text-xs bg-accent/10 text-accent px-2.5 py-1 rounded-full">Đã Hoàn Thành</span>
+      return <span className="text-[10px] sm:text-xs bg-accent/10 text-accent px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-full whitespace-nowrap">Hoàn Thành</span>
     case "cancelled":
-      return <span className="text-xs bg-destructive/10 text-destructive px-2.5 py-1 rounded-full">Đã Hủy</span>
+      return <span className="text-[10px] sm:text-xs bg-destructive/10 text-destructive px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-full whitespace-nowrap">Đã Hủy</span>
   }
 }
 
@@ -93,28 +93,32 @@ const AppointmentCard = ({ appointment }: { appointment: Appointment }) => {
   return (
     <Card
       onClick={() => router.push(`/appointments/${appointment.id}`)}
-      className="p-4 sm:p-6 shadow transition-shadow hover:shadow-md cursor-pointer"
+      className="p-3 sm:p-4 lg:p-6 shadow transition-shadow hover:shadow-md cursor-pointer"
     >
-      <div className="flex items-start justify-between gap-4 mb-4">
-        <div className="flex-1">
-          <h3 className="font-bold text-foreground mb-1">{appointment.clinicName}</h3>
-          <p className="text-sm text-muted-foreground">{appointment.doctor}</p>
+      <div className="flex items-start justify-between gap-2 sm:gap-4 mb-3 sm:mb-4">
+        <div className="flex-1 min-w-0">
+          <h3 className="font-bold text-sm sm:text-base text-foreground mb-1 line-clamp-2">{appointment.clinicName}</h3>
+          <p className="text-xs sm:text-sm text-muted-foreground truncate">{appointment.doctor}</p>
         </div>
         <StatusLabel status={appointment.status} />
       </div>
 
-      <div className="space-y-2 text-sm mb-4">
-        <div className="flex items-center gap-2 text-muted-foreground">
-          <Calendar className="w-4 h-4" />
-          {appointment.date} lúc {appointment.time}
+      <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm mb-3 sm:mb-4">
+        <div className="flex items-center gap-1.5 sm:gap-2 text-muted-foreground">
+          <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
+          <span className="truncate">{appointment.date} lúc {appointment.time}</span>
         </div>
-        <div className="text-muted-foreground">Lý do: {appointment.reason}</div>
+        <div className="text-muted-foreground line-clamp-2">
+          <span className="font-medium">Lý do:</span> {appointment.reason}
+        </div>
         {appointment.cancelReason && (
-          <div className="text-destructive text-xs">Lý do hủy: {appointment.cancelReason}</div>
+          <div className="text-destructive text-xs line-clamp-2">
+            <span className="font-medium">Lý do hủy:</span> {appointment.cancelReason}
+          </div>
         )}
       </div>
-      <div className="flex items-center justify-between gap-2 mt-4" onClick={(e) => e.stopPropagation()}>
-        <Button size="sm" variant="ghost" className="flex-1">
+      <div className="flex items-center justify-between gap-2 mt-3 sm:mt-4" onClick={(e) => e.stopPropagation()}>
+        <Button size="sm" variant="ghost" className="flex-1 text-xs sm:text-sm h-8 sm:h-9">
           Xem Chi Tiết
         </Button>
 
@@ -122,7 +126,7 @@ const AppointmentCard = ({ appointment }: { appointment: Appointment }) => {
           <Link href={`/appointments/review/${appointment.id}`} className="flex-1">
             <Button
               size="sm"
-              className="w-full bg-accent hover:bg-accent/90 text-accent-foreground whitespace-nowrap"
+              className="w-full bg-accent hover:bg-accent/90 text-accent-foreground text-xs sm:text-sm h-8 sm:h-9"
             >
               Đánh Giá
             </Button>
@@ -155,50 +159,50 @@ export default function AppointmentsPage() {
 
   return (
     <>
-      <main className="min-h-screen bg-background py-8">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-foreground mb-2">Lịch Hẹn Của Tôi</h1>
-            <p className="text-muted-foreground">Quản lý và theo dõi các lịch khám bệnh của bạn</p>
+      <main className="min-h-screen bg-background py-4 sm:py-8">
+        <div className="mx-auto max-w-4xl px-3 sm:px-6 lg:px-8">
+          <div className="mb-4 sm:mb-8">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground mb-1 sm:mb-2">Lịch Hẹn Của Tôi</h1>
+            <p className="text-xs sm:text-sm text-muted-foreground">Quản lý và theo dõi các lịch khám bệnh của bạn</p>
           </div>
 
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-5 bg-secondary/20 p-1 rounded-lg overflow-auto">
-              <TabsTrigger value="all">Tất Cả</TabsTrigger>
-              <TabsTrigger value="pending" className="text-xs sm:text-sm">
-                Chưa Xác Nhận
+            <TabsList className="grid w-full grid-cols-5 bg-secondary/20 p-0.5 sm:p-1 rounded-lg h-auto">
+              <TabsTrigger value="all" className="text-[10px] sm:text-sm px-1 sm:px-3 py-1.5 sm:py-2">Tất Cả</TabsTrigger>
+              <TabsTrigger value="pending" className="text-[10px] sm:text-sm px-1 sm:px-3 py-1.5 sm:py-2 leading-tight">
+                Chưa XN
               </TabsTrigger>
-              <TabsTrigger value="confirmed" className="text-xs sm:text-sm">
-                Đã Xác Nhận
+              <TabsTrigger value="confirmed" className="text-[10px] sm:text-sm px-1 sm:px-3 py-1.5 sm:py-2 leading-tight">
+                Đã XN
               </TabsTrigger>
-              <TabsTrigger value="completed" className="text-xs sm:text-sm">
+              <TabsTrigger value="completed" className="text-[10px] sm:text-sm px-1 sm:px-3 py-1.5 sm:py-2 leading-tight">
                 Hoàn Thành
               </TabsTrigger>
-              <TabsTrigger value="cancelled" className="text-xs sm:text-sm">
+              <TabsTrigger value="cancelled" className="text-[10px] sm:text-sm px-1 sm:px-3 py-1.5 sm:py-2">
                 Hủy
               </TabsTrigger>
             </TabsList>
 
-            <div className="mt-6">
+            <div className="mt-4 sm:mt-6">
               {filteredAppointments.length > 0 ? (
-                <div className="grid grid-cols-1 gap-4">
+                <div className="grid grid-cols-1 gap-3 sm:gap-4">
                   {filteredAppointments.map((appointment) => (
                     <AppointmentCard key={appointment.id} appointment={appointment} />
                   ))}
                 </div>
               ) : (
-                <Card className="p-8 sm:p-12 text-center">
-                  <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Calendar className="w-8 h-8 text-muted-foreground" />
+                <Card className="p-6 sm:p-8 lg:p-12 text-center">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                    <Calendar className="w-6 h-6 sm:w-8 sm:h-8 text-muted-foreground" />
                   </div>
-                  <h3 className="text-lg font-bold text-foreground mb-2">Không có lịch hẹn</h3>
-                  <p className="text-muted-foreground mb-6">
+                  <h3 className="text-base sm:text-lg font-bold text-foreground mb-1.5 sm:mb-2">Không có lịch hẹn</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6 px-2">
                     {activeTab === "all"
                       ? "Bạn chưa có lịch hẹn nào. Hãy tìm và đặt lịch ngay!"
                       : "Không có lịch hẹn trong danh mục này."}
                   </p>
                   <Link href="/search">
-                    <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">Đặt Lịch Ngay</Button>
+                    <Button className="bg-primary hover:bg-primary/90 text-primary-foreground text-sm sm:text-base h-9 sm:h-10 px-4 sm:px-6">Đặt Lịch Ngay</Button>
                   </Link>
                 </Card>
               )}
